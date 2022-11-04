@@ -1,1 +1,1 @@
-# Projeto-Computa-o-Gr-fica
+# Projeto-CG
