@@ -12,10 +12,13 @@ imageUP.src = '../Packs/Monsters/Pink_Monster/Pink_Monster_Climb_4.png'
 let imageWalkRight = new Image();
 imageWalkRight.src = '../Packs/Monsters/Pink_Monster/Pink_Monster_Walk_6.png'
 
+let imageWalkLeft = new Image();
+imageWalkLeft.src = '../Packs/Monsters/Pink_Monster/Pink_Monster_Walk_6(versão2).png'
+
 let image;
 
 window.onload = function () {
-	setInterval(render, 2000 / 15); //start animation AFTER image load! - 15 fps
+	setInterval(render, 2050 / 15); 
 	image = imageIDLE;
 };
 
@@ -42,9 +45,11 @@ function keypressed(click){
 	console.log(click.key)
 	if (click.key == "w"){
 		image = imageUP
-	}else if (click.key == "s"){
+	}else if (click.key == " "){
 		image = imageIDLE
 	}else if (click.key == "d"){
 		image = imageWalkRight
+	}else if (click.key == "a"){
+		image = imageWalkLeft
 	}
 }
