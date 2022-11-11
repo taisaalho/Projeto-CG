@@ -1,7 +1,7 @@
 const canvas = document.querySelector('#myCanvas');
 const ctx = canvas.getContext("2d");
 
-const W = canvas.width, H = canvas.height;
+const W = canvas.width = 500 , H = canvas.height = 500;
 
 let bgX = -1000
 let bgY = -1000
@@ -12,10 +12,6 @@ let aKey = false;
 let sKey //implementar
 
 //Imagens
-
-let bg = new Image();
-bg.src = '../Tilesets/map.png';
-
 let imageIdle = new Image();
 imageIdle.src = '../Packs/Monsters/Pink_Monster/Pink_Monster_Idle_4.png'
 
@@ -104,5 +100,17 @@ function keyReleased(click) {
 		aKey = false
 	} else if (click.key == "s" || click.key == "S")
 		image = imageIdle
-	//implementar paragem de movimento
 }
+
+window.addEventListener('keyup',keyReleased);
+
+function keyReleased(click){
+	if(click.key == "w" || click.key =="W"){
+		image = imageStop
+	}else if (click.key == "d" || click.key == "D"){
+		image = imageStop
+	}else if (click.key == "a" || click.key == "A"){
+		image = imageStop
+	}else if (click.key == "s" || click.key == "S")
+		image = imageStop
+} 
