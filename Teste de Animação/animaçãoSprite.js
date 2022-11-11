@@ -3,8 +3,19 @@ const ctx = canvas.getContext("2d");
 
 const W = canvas.width, H = canvas.height;
 
+let bgX = -1000
+let bgY = -1000
+
+let wKey = false;
+let dKey = false;
+let aKey = false;
+let sKey //implementar
 
 //Imagens
+
+let bg = new Image();
+bg.src = '../Tilesets/map.png';
+
 let imageIdle = new Image();
 imageIdle.src = '../Packs/Monsters/Pink_Monster/Pink_Monster_Idle_4.png'
 
@@ -20,52 +31,78 @@ imageWalkLeft.src = '../Packs/Monsters/Pink_Monster/Pink_Monster_Walk_6(versão2
 let image;
 
 window.onload = function () {
-	setInterval(render, 2050 / 15); 
+	//setInterval(render, 2050 / 15); 
+
 	image = imageIdle;
+	render()
 };
 
 
 //Sprite frame counter 		
 let frameIndex = 0;
+let animationFrameCount = 0;
 
 function render() {
-ctx.clearRect(0, 0, W, H);
+	ctx.clearRect(0, 0, W, H);
+	ctx.drawImage(bg, bgX, bgY, 2304, 3072);
+	if (wKey) {
+		bgY += 7;
+	}
+	if (dKey) {
+		bgX -= 7;
+	}
+	if (aKey) {
+		bgX += 7;
+	}
 
-ctx.drawImage(image, frameIndex * 32, 0, 32, 32,
-    110, 80, 100, 100);
-
-frameIndex++;
-if (frameIndex == 4)
-	frameIndex = 0; //reset the number of frames counter
 
 
+
+	ctx.drawImage(image, frameIndex * 32, 0, 32, 32,
+		110, 80, 100, 100);
+
+
+	animationFrameCount++;
+	if (animationFrameCount % 7 == 0) {
+		frameIndex++;
+		if (frameIndex == 4)
+			frameIndex = 0; //reset the number of frames counter
+	}
+	requestAnimationFrame(render)
 }
 
 
 //Teclado
 window.addEventListener("keydown", keyPressed);
 
-function keyPressed(click){
+function keyPressed(click) {
 	console.log(click.key)
-	if (click.key == "w" || click.key == "W"){
+	if (click.key == "w" || click.key == "W") {
 		image = imageUp
-	}else if (click.key == "d" || click.key == "D"){
+		wKey = true
+	} else if (click.key == "d" || click.key == "D") {
 		image = imageWalkRight
-	}else if (click.key == "a" || click.key == "A"){
+		dKey = true
+	} else if (click.key == "a" || click.key == "A") {
 		image = imageWalkLeft
-	}else if (click.key == "s" || click.key == "S")
+		aKey = true
+	} else if (click.key == "s" || click.key == "S")
 		image = imageIdle //mudar
 }
 
-window.addEventListener('keyup',keyReleased);
+window.addEventListener('keyup', keyReleased);
 
-function keyReleased(click){
-	if(click.key == "w" || click.key =="W"){
+function keyReleased(click) {
+	if (click.key == "w" || click.key == "W") {
 		image = imageIdle
-	}else if (click.key == "d" || click.key == "D"){
+		wKey = false
+	} else if (click.key == "d" || click.key == "D") {
 		image = imageIdle
-	}else if (click.key == "a" || click.key == "A"){
+		dKey = false
+	} else if (click.key == "a" || click.key == "A") {
 		image = imageIdle
-	}else if (click.key == "s" || click.key == "S")
+		aKey = false
+	} else if (click.key == "s" || click.key == "S")
 		image = imageIdle
+	//implementar paragem de movimento
 }
