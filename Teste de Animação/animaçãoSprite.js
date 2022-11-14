@@ -1,7 +1,7 @@
 const canvas = document.querySelector('#myCanvas');
 const ctx = canvas.getContext("2d");
 
-const W = canvas.width = 500 , H = canvas.height = 500;
+const W = canvas.width = 3000 , H = canvas.height = 800;
 
 let bgX = -1000
 let bgY = -1000
@@ -9,20 +9,26 @@ let bgY = -1000
 let wKey = false;
 let dKey = false;
 let aKey = false;
-let sKey //implementar
+let sKey = false;
 
 //Imagens
+let bg = new Image();
+bg.src = '../Tilesets/map.png';
+
 let imageIdle = new Image();
-imageIdle.src = '../Packs/Monsters/Pink_Monster/Pink_Monster_Idle_4.png'
+imageIdle.src = '../Packs/Sprite_Menina/Sprite_Menina_Stop.png'
 
 let imageUp = new Image();
-imageUp.src = '../Packs/Monsters/Pink_Monster/Pink_Monster_Climb_4.png'
+imageUp.src = '../Packs/Sprite_Menina/Sprite_Menina_Back.png'
 
 let imageWalkRight = new Image();
-imageWalkRight.src = '../Packs/Monsters/Pink_Monster/Pink_Monster_Walk_6.png'
+imageWalkRight.src = '../Packs/Sprite_Menina/Sprite_Menina_Right.png'
 
 let imageWalkLeft = new Image();
-imageWalkLeft.src = '../Packs/Monsters/Pink_Monster/Pink_Monster_Walk_6(versão2).png'
+imageWalkLeft.src = '../Packs/Sprite_Menina/Sprite_Menina_Left.png'
+
+let imageWalkDown = new Image();
+imageWalkDown.src = '../Packs/Sprite_Menina/Sprite_Menina_Front.png';
 
 let image;
 
@@ -40,15 +46,18 @@ let animationFrameCount = 0;
 
 function render() {
 	ctx.clearRect(0, 0, W, H);
-	ctx.drawImage(bg, bgX, bgY, 2304, 3072);
+	ctx.drawImage(bg, bgX, bgY, 5865, 3894);
 	if (wKey) {
-		bgY += 7;
+		bgY -= 7;
 	}
 	if (dKey) {
 		bgX -= 7;
 	}
 	if (aKey) {
 		bgX += 7;
+	}
+	if (sKey) {
+		bgY += 7;	
 	}
 
 
@@ -59,7 +68,7 @@ function render() {
 
 
 	animationFrameCount++;
-	if (animationFrameCount % 7 == 0) {
+	if (animationFrameCount % 1 == 0) {
 		frameIndex++;
 		if (frameIndex == 4)
 			frameIndex = 0; //reset the number of frames counter
@@ -83,7 +92,8 @@ function keyPressed(click) {
 		image = imageWalkLeft
 		aKey = true
 	} else if (click.key == "s" || click.key == "S")
-		image = imageIdle //mudar
+		image = imageWalkDown
+		sKey = true
 }
 
 window.addEventListener('keyup', keyReleased);
@@ -99,18 +109,6 @@ function keyReleased(click) {
 		image = imageIdle
 		aKey = false
 	} else if (click.key == "s" || click.key == "S")
-		image = imageIdle
+		image = imageWalkDown
+		sKey = false
 }
-
-window.addEventListener('keyup',keyReleased);
-
-function keyReleased(click){
-	if(click.key == "w" || click.key =="W"){
-		image = imageStop
-	}else if (click.key == "d" || click.key == "D"){
-		image = imageStop
-	}else if (click.key == "a" || click.key == "A"){
-		image = imageStop
-	}else if (click.key == "s" || click.key == "S")
-		image = imageStop
-} 
