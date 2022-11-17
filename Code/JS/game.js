@@ -20,40 +20,55 @@ let aKey = false;
 let sKey = false;
 
 
-/* imagem background */
+
+
+//Imagens
+let image;
+
+/* Imagem background */
 
 let bg = new Image();
 bg.src = "/Tilesets/map.png"
 
-
-//Imagens
-let imageIdle = new Image();
+/* Imagem Rapariga */
+let imageIdleGirl = new Image();
 imageIdle.src = '/Packs/Sprite_Menina/Sprite_Menina_Stop.png'
 
-let imageUp = new Image();
+let imageUpGirl = new Image();
 imageUp.src = '/Packs/Sprite_Menina/Sprite_Menina_Back.png'
 
-let imageWalkRight = new Image();
+let imageWalkRightGirl = new Image();
 imageWalkRight.src = '/Packs/Sprite_Menina/Sprite_Menina_Right.png'
 
-let imageWalkLeft = new Image();
+let imageWalkLeftGirl = new Image();
 imageWalkLeft.src = '/Packs/Sprite_Menina/Sprite_Menina_Left.png'
 
-let imageWalkDown = new Image();
+let imageWalkDownGirl = new Image();
 imageWalkDown.src = '/Packs/Sprite_Menina/Sprite_Menina_Front.png';
 
 
-//Imagem Rapaz
-let image;
+/* Imagem Rapaz */
+let imageIdleBoy = new image()
+imageIdleBoy = '/Packs/Sprite_Rapaz/Sprite_Boy_Stop.png'
 
+let imageUpBoy = new image()
+imageUpBoy = '/Packs/Sprite_Rapaz/Sprite_Boy_Up.png'
+
+let imageWalkRightBoy = new Image();
+imageWalkRightBoy = '/Packs/Sprite_Rapaz/Sprite_Boy_Right.png'
+
+let imageWalkLeftBoy = new Image();
+imageWalkLeftBoy = '/Packs/Sprite_Rapaz/Sprite_Boy_Left.png'
+
+let imageWalkDownBoy = new Image();
+imageWalkDownBoy = '/Packs/Sprite_Rapaz/Sprite_Boy_Down.png'
 
 
 window.onload = function(){
-    image= imageIdle
+    /* image= imageIdleGirl */
+    image = imageIdleBoy
     render();
 }
-
-
 
 let frameIndex = 0;
 let animationFrameCount = 0 
@@ -64,7 +79,6 @@ function render(){
     ctx.clearRect(0,0,W,H)
     ctx.drawImage(bg, bgX,bgY,5865,3894)
     
-
     if(wKey){
         bgY += 2
     }
@@ -91,11 +105,6 @@ function render(){
             frameIndex = 0
         }
     }
-    
-    
-    
-    
-    
     requestAnimationFrame(render)
 }
 
@@ -110,17 +119,20 @@ function keyPressed(click){
 
 
     if (click.key == "w" || click.key == "W") {
-		image = imageUp 
+		/* image = imageUpGirl  */
+        image = imageUpBoy
 		wKey = true
 	} else if (click.key == "d" || click.key == "D") {
-		image = imageWalkRight 
+		/* image = imageWalkRightGirl */ 
+        image = imageWalkRightBoy
 		dKey = true
 	} else if (click.key == "a" || click.key == "A") {
-		image = imageWalkLeft
+		/* image = imageWalkLeftGirl */
+        image = imageWalkLeftBoy
 		aKey = true
 	} else if (click.key == "s" || click.key == "S"){
-
-        image = imageWalkDown
+        /* image = imageWalkDownGirl */
+        image = imageWalkDownBoy
         sKey = true
     }
         
@@ -132,17 +144,20 @@ window.addEventListener("keyup", keyReleased)
 function keyReleased(click){
 
     if (click.key == "w" || click.key == "W") {
-		image = imageIdle
+		/* image = imageIdleGirl */
+        image = imageIdleBoy
 		wKey = false
 	} else if (click.key == "d" || click.key == "D") {
-		image = imageIdle
+		/* image = imageIdleGirl */
+        image = imageIdleBoy
 		dKey = false
 	} else if (click.key == "a" || click.key == "A") {
-		image = imageIdle
+		/* image = imageIdleGirl */
+        image = imageIdleBoy
 		aKey = false
 	} else if (click.key == "s" || click.key == "S"){
-
-        image = imageIdle
+        /* image = imageIdleGirl */
+        image = imageIdleBoy
 		sKey = false
     }
 
