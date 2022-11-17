@@ -23,35 +23,33 @@ let sKey = false;
 
 
 //Imagens
-let image;
 
 /* Imagem background */
-
 let bg = new Image();
 bg.src = "/Tilesets/map.png"
 
 /* Imagem Rapariga */
 let imageIdleGirl = new Image();
-imageIdle.src = '/Packs/Sprite_Menina/Sprite_Menina_Stop.png'
+imageIdleGirl.src = '/Packs/Sprite_Menina/Sprite_Menina_Stop.png'
 
 let imageUpGirl = new Image();
-imageUp.src = '/Packs/Sprite_Menina/Sprite_Menina_Back.png'
+imageUpGirl.src = '/Packs/Sprite_Menina/Sprite_Menina_Back.png'
 
 let imageWalkRightGirl = new Image();
-imageWalkRight.src = '/Packs/Sprite_Menina/Sprite_Menina_Right.png'
+imageWalkRightGirl.src = '/Packs/Sprite_Menina/Sprite_Menina_Right.png'
 
 let imageWalkLeftGirl = new Image();
-imageWalkLeft.src = '/Packs/Sprite_Menina/Sprite_Menina_Left.png'
+imageWalkLeftGirl.src = '/Packs/Sprite_Menina/Sprite_Menina_Left.png'
 
 let imageWalkDownGirl = new Image();
-imageWalkDown.src = '/Packs/Sprite_Menina/Sprite_Menina_Front.png';
+imageWalkDownGirl.src = '/Packs/Sprite_Menina/Sprite_Menina_Front.png';
 
 
 /* Imagem Rapaz */
-let imageIdleBoy = new image()
+let imageIdleBoy = new Image()
 imageIdleBoy = '/Packs/Sprite_Rapaz/Sprite_Boy_Stop.png'
 
-let imageUpBoy = new image()
+let imageUpBoy = new Image()
 imageUpBoy = '/Packs/Sprite_Rapaz/Sprite_Boy_Up.png'
 
 let imageWalkRightBoy = new Image();
@@ -64,8 +62,11 @@ let imageWalkDownBoy = new Image();
 imageWalkDownBoy = '/Packs/Sprite_Rapaz/Sprite_Boy_Down.png'
 
 
+let image;
+
+
 window.onload = function(){
-    /* image= imageIdleGirl */
+    /* image = imageIdleGirl */
     image = imageIdleBoy
     render();
 }
@@ -110,14 +111,11 @@ function render(){
 
 
 
-/* functions teclado */
+//Funções Teclado
 
 window.addEventListener("keydown",keyPressed)
 
 function keyPressed(click){
-    
-
-
     if (click.key == "w" || click.key == "W") {
 		/* image = imageUpGirl  */
         image = imageUpBoy
@@ -142,7 +140,6 @@ function keyPressed(click){
 window.addEventListener("keyup", keyReleased)
 
 function keyReleased(click){
-
     if (click.key == "w" || click.key == "W") {
 		/* image = imageIdleGirl */
         image = imageIdleBoy
