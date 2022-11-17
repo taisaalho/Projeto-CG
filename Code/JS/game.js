@@ -23,38 +23,55 @@ let sKey = false;
 
 
 
-/* imagem background */
 
+//Imagens
+
+/* Imagem background */
 let bg = new Image();
 bg.src = "/Tilesets/mapFinal.png"
 
+/* Imagem Rapariga */
+let imageIdleGirl = new Image();
+imageIdleGirl.src = '/Packs/Sprite_Menina/Sprite_Menina_Stop.png'
 
-//Imagens
-let imageIdle = new Image();
-imageIdle.src = '/Packs/Sprite_Menina/Sprite_Menina_Stop.png'
+let imageUpGirl = new Image();
+imageUpGirl.src = '/Packs/Sprite_Menina/Sprite_Menina_Back.png'
 
-let imageUp = new Image();
-imageUp.src = '/Packs/Sprite_Menina/Sprite_Menina_Back.png'
+let imageWalkRightGirl = new Image();
+imageWalkRightGirl.src = '/Packs/Sprite_Menina/Sprite_Menina_Right.png'
 
-let imageWalkRight = new Image();
-imageWalkRight.src = '/Packs/Sprite_Menina/Sprite_Menina_Right.png'
+let imageWalkLeftGirl = new Image();
+imageWalkLeftGirl.src = '/Packs/Sprite_Menina/Sprite_Menina_Left.png'
 
-let imageWalkLeft = new Image();
-imageWalkLeft.src = '/Packs/Sprite_Menina/Sprite_Menina_Left.png'
+let imageWalkDownGirl = new Image();
+imageWalkDownGirl.src = '/Packs/Sprite_Menina/Sprite_Menina_Front.png';
 
-let imageWalkDown = new Image();
-imageWalkDown.src = '/Packs/Sprite_Menina/Sprite_Menina_Front.png';
 
-let image;
+/*Imagem Rapaz
+let imageIdleBoy = new Image()
+imageIdleBoy = '/Packs/Sprite_Rapaz/Sprite_Boy_Stop.png'
 
+let imageUpBoy = new Image()
+imageUpBoy = '/Packs/Sprite_Rapaz/Sprite_Boy_Up.png'
+
+let imageWalkRightBoy = new Image();
+imageWalkRightBoy = '/Packs/Sprite_Rapaz/Sprite_Boy_Right.png'
+
+let imageWalkLeftBoy = new Image();
+imageWalkLeftBoy = '/Packs/Sprite_Rapaz/Sprite_Boy_Left.png'
+
+let imageWalkDownBoy = new Image();
+imageWalkDownBoy = '/Packs/Sprite_Rapaz/Sprite_Boy_Down.png'
+
+
+let image; */
 
 
 window.onload = function(){
-    image= imageIdle
+    image = imageIdleGirl 
+    /* image = imageIdleBoy */
     render();
 }
-
-
 
 let frameIndex = 0;
 let animationFrameCount = 0 
@@ -66,10 +83,6 @@ function render(){
     ctx.drawImage(bg, bgX,bgY,5865,3894)
     
 
-    ctx.drawImage(image, frameIndex * 64,0,64,64,characterX,characterY,100,100)    
-    animationFrameCount++
-
-    
     if(wKey){
         bgY += 2
         
@@ -145,32 +158,32 @@ function render(){
     
     
     
-    console.log(bgX,bgY)
+    
     requestAnimationFrame(render)
 }
 
 
 
-/* functions teclado */
+//Funções Teclado
 
 window.addEventListener("keydown",keyPressed)
 
 function keyPressed(click){
-    
-
-
     if (click.key == "w" || click.key == "W") {
-		image = imageUp 
+		image = imageUpGirl 
+        /* image = imageUpBoy */
 		wKey = true
 	} else if (click.key == "d" || click.key == "D") {
-		image = imageWalkRight 
+		image = imageWalkRightGirl
+        /* image = imageWalkRightBoy */
 		dKey = true
 	} else if (click.key == "a" || click.key == "A") {
-		image = imageWalkLeft
+		image = imageWalkLeftGirl
+        /* image = imageWalkLeftBoy */
 		aKey = true
 	} else if (click.key == "s" || click.key == "S"){
-
-        image = imageWalkDown
+        image = imageWalkDownGirl
+        /* image = imageWalkDownBoy */
         sKey = true
     }
         
@@ -180,19 +193,21 @@ function keyPressed(click){
 window.addEventListener("keyup", keyReleased)
 
 function keyReleased(click){
-
     if (click.key == "w" || click.key == "W") {
-		image = imageIdle
+		image = imageIdleGirl
+        /* image = imageIdleBoy */
 		wKey = false
 	} else if (click.key == "d" || click.key == "D") {
-		image = imageIdle
+		image = imageIdleGirl
+        /* image = imageIdleBoy */
 		dKey = false
 	} else if (click.key == "a" || click.key == "A") {
-		image = imageIdle
+		image = imageIdleGirl
+        /* image = imageIdleBoy */
 		aKey = false
 	} else if (click.key == "s" || click.key == "S"){
-
-        image = imageIdle
+        image = imageIdleGirl 
+        /* image = imageIdleBoy */
 		sKey = false
     }
 
