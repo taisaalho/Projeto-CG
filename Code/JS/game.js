@@ -45,7 +45,7 @@ let imageWalkDownGirl = new Image();
 imageWalkDownGirl.src = '/Packs/Sprite_Menina/Sprite_Menina_Front.png';
 
 
-/* Imagem Rapaz */
+/*Imagem Rapaz
 let imageIdleBoy = new Image()
 imageIdleBoy = '/Packs/Sprite_Rapaz/Sprite_Boy_Stop.png'
 
@@ -62,12 +62,12 @@ let imageWalkDownBoy = new Image();
 imageWalkDownBoy = '/Packs/Sprite_Rapaz/Sprite_Boy_Down.png'
 
 
-let image;
+let image; */
 
 
 window.onload = function(){
-    /* image = imageIdleGirl */
-    image = imageIdleBoy
+    image = imageIdleGirl 
+    /* image = imageIdleBoy */
     render();
 }
 
@@ -117,20 +117,20 @@ window.addEventListener("keydown",keyPressed)
 
 function keyPressed(click){
     if (click.key == "w" || click.key == "W") {
-		/* image = imageUpGirl  */
-        image = imageUpBoy
+		image = imageUpGirl 
+        /* image = imageUpBoy */
 		wKey = true
 	} else if (click.key == "d" || click.key == "D") {
-		/* image = imageWalkRightGirl */ 
-        image = imageWalkRightBoy
+		image = imageWalkRightGirl
+        /* image = imageWalkRightBoy */
 		dKey = true
 	} else if (click.key == "a" || click.key == "A") {
-		/* image = imageWalkLeftGirl */
-        image = imageWalkLeftBoy
+		image = imageWalkLeftGirl
+        /* image = imageWalkLeftBoy */
 		aKey = true
 	} else if (click.key == "s" || click.key == "S"){
-        /* image = imageWalkDownGirl */
-        image = imageWalkDownBoy
+        image = imageWalkDownGirl
+        /* image = imageWalkDownBoy */
         sKey = true
     }
         
@@ -141,20 +141,20 @@ window.addEventListener("keyup", keyReleased)
 
 function keyReleased(click){
     if (click.key == "w" || click.key == "W") {
-		/* image = imageIdleGirl */
-        image = imageIdleBoy
+		image = imageIdleGirl
+        /* image = imageIdleBoy */
 		wKey = false
 	} else if (click.key == "d" || click.key == "D") {
-		/* image = imageIdleGirl */
-        image = imageIdleBoy
+		image = imageIdleGirl
+        /* image = imageIdleBoy */
 		dKey = false
 	} else if (click.key == "a" || click.key == "A") {
-		/* image = imageIdleGirl */
-        image = imageIdleBoy
+		image = imageIdleGirl
+        /* image = imageIdleBoy */
 		aKey = false
 	} else if (click.key == "s" || click.key == "S"){
-        /* image = imageIdleGirl */
-        image = imageIdleBoy
+        image = imageIdleGirl 
+        /* image = imageIdleBoy */
 		sKey = false
     }
 
