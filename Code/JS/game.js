@@ -20,7 +20,6 @@ let aKey = false;
 let sKey = false;
 
 
-
 /* imagem background */
 
 let bg = new Image();
@@ -43,6 +42,8 @@ imageWalkLeft.src = '/Packs/Sprite_Menina/Sprite_Menina_Left.png'
 let imageWalkDown = new Image();
 imageWalkDown.src = '/Packs/Sprite_Menina/Sprite_Menina_Front.png';
 
+
+//Imagem Rapaz
 let image;
 
 
