@@ -8,11 +8,13 @@ let H = canvas.height;
 
 
 /*variaveis movimento*/
-let bgX = -3565
-let bgY = -2500
+let bgX = -3500
+let bgY = -2000
 
-let pX = 0
-let pY  = 0
+
+
+let characterX = W/2
+let characterY  = H/2
 
 let wKey = false;
 let dKey = false;
@@ -24,7 +26,7 @@ let sKey = false;
 /* imagem background */
 
 let bg = new Image();
-bg.src = "/Tilesets/map.png"
+bg.src = "/Tilesets/mapFinal.png"
 
 
 //Imagens
@@ -64,24 +66,73 @@ function render(){
     ctx.drawImage(bg, bgX,bgY,5865,3894)
     
 
+    ctx.drawImage(image, frameIndex * 64,0,64,64,characterX,characterY,100,100)    
+    animationFrameCount++
+
+    
     if(wKey){
         bgY += 2
-    }
-
+        
+        if(bgY > -2600 ){
+            if (characterY>H/2){
+                console.log("yau")
+                characterY -= 2
+            }
+            
+        }
+    } 
     if(dKey){
-        bgX -= 2
+        
+        if(bgX < -4000){
+            characterX +=2
+        }else if(bgY >-2600 && bgY < -2200 ){
+            console.log("pau")
+            characterX += 2
+        }   
+        else{
+            bgX -= 2
+
+        }
+        
+    
     }
 
     if(aKey){
         bgX += 2
+        if(bgX >-4000 && bgY>-1800){
+            
+            if(characterX> W/2){
+                characterX -= 2
+            }
+        }else if(bgY <-2600 && bgY > -2200 ){
+            if(characterX> W/2){
+                characterX += 2
+            }
+
+        }else if(bgX >-3570){
+            characterX -= 2
+        }else{
+            
+        }
+
+
+        
     }
 
+
     if(sKey){
-        bgY -=2
+        if(bgY < -2600){
+            characterY += 2
+            
+        } 
+        else{
+
+            bgY-=2
+        }
+        
     }
     
-    ctx.drawImage(image, frameIndex * 64,0,64,64,W/2,H/2,100,100)    
-    animationFrameCount++
+
 
     if(animationFrameCount % 4 ==0){
         frameIndex++
@@ -94,7 +145,7 @@ function render(){
     
     
     
-    
+    console.log(bgX,bgY)
     requestAnimationFrame(render)
 }
 
