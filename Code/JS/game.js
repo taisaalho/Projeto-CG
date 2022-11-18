@@ -47,6 +47,11 @@ let imageWalkDownGirl = new Image();
 imageWalkDownGirl.src = '/Packs/Sprite_Menina/Sprite_Menina_Front.png';
 
 
+
+
+
+
+
 /*Imagem Rapaz
 let imageIdleBoy = new Image()
 imageIdleBoy = '/Packs/Sprite_Rapaz/Sprite_Boy_Stop.png'
