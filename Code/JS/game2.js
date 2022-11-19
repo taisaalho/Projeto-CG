@@ -69,23 +69,6 @@ let image= imageIdleBoy
 
 
 
-if(wKey){
-    bgY +=5
-}
-
-if(aKey){
-    bgX -=5
-}
-
-
-if(sKey){
-    bgY -=5
-}
-
-
-if(dKey){
-    bgX +=5
-}
 
 
 window.onload = render
@@ -115,6 +98,25 @@ function render(){
             frameIndex = 0
         }
     }
+
+    if(wKey){
+        bgY +=5
+    }
+    
+    if(aKey){
+        bgX +=5
+    }
+    
+    
+    if(sKey){
+        bgY -=5
+    }
+    
+    
+    if(dKey){
+        bgX -=5
+    }
+    
 
     
 
@@ -191,7 +193,7 @@ function keyPressed(click){
 }
 
 
-function keyReleased(){
+function keyReleased(click){
     if (click.key == "w" || click.key == "W") {
         /* pixel  = ctx.getImageData(characterX,characterY-1, 64,1)
         if(verifyPixel(pixel)){
@@ -205,8 +207,8 @@ function keyReleased(){
         pixel  = ctx.getImageData(characterX+1,characterY, 64,1)
         if(verifyPixel(pixel)){
         } */
-        image = imageWalkRightBoy 
-        dKey = true
+        image = imageIdleBoy 
+        dKey = false
         
         
         
@@ -222,8 +224,8 @@ function keyReleased(){
         /* pixel  = ctx.getImageData(characterX-1,characterY, 64,1)
         if(verifyPixel(pixel)){
         } */
-        image = imageWalkLeftBoy 
-        aKey = true
+        image = imageIdleBoy 
+        aKey = false
     } 
     
     else if (click.key == "s" || click.key == "S"){
@@ -232,8 +234,8 @@ function keyReleased(){
         /* pixel  = ctx.getImageData(characterX,characterY+1, 64,1)
         if(verifyPixel(pixel)){
         } */
-        image = imageWalkDownBoy 
-        sKey = true
+        image = imageIdleBoy 
+        sKey = false
 
 
 
