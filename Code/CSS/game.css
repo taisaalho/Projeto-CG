@@ -1,3 +1,29 @@
+@font-face {
+    font-family: gameFont;
+    src: url("/Fonts/PressStart2P-Regular.ttf");
+}
+.buyButtonClass{
+    visibility: hidden;
+}
+
+#button1{
+    position:absolute;
+    z-index:10;
+    top:500px;
+    left:650px;
+}
+
+
+/* #button2{
+    position:absolute;
+    top:500px;
+}
+#button3{
+    position:absolute;
+    top:500px;
+    
+} */
+
 #idCanvas {
     position: absolute;
     top:0;
