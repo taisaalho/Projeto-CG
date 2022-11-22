@@ -6,6 +6,10 @@
     height: 800px;
     padding-left: 26vh;
     padding-top: 6vh;
+    width: 1500px;
+    height: 800px;
+    padding-left: 180px;
+    padding-top: 55px;
 }
 
 .container img {
@@ -22,6 +26,7 @@
     height: 7vh;
     background-color: #834519;
     color: #ffffff;
+    color: #dad9d9;
     font-family: 'Planes_ValMore';
     font-size: 44px;
     cursor: pointer;
@@ -42,6 +47,7 @@
     height: 7vh;
     background-color: #834519;
     color: #ffffff;
+    color: #dad9d9;
     font-family: 'Planes_ValMore';
     font-size: 44px;
     cursor: pointer;
@@ -58,6 +64,7 @@ input{
     position: absolute;
     top: 50%;
     left: 35%;
+    left: 38%;
     width: 65vh;
     height: 7vh;
     color: #ffffff;
@@ -75,6 +82,11 @@ input{
     height: 7.8vh;
     cursor: pointer;
     color: #ffffff;
+    left: 133.8vh;
+    width:15vh;
+    height: 7.8vh;
+    cursor: pointer;
+    color: #dad9d9;
     background-color: #834519;
     border: 3px solid #ff6a00;
     border-radius: 5px;
