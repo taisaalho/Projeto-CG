@@ -103,12 +103,12 @@
 
         buyItem(n){
             
-                console.log("o teu pai")
+                
                 if(this.inventory.length >0){
                     if(this.inventory.find(item => item.id == storeItems[n].id) == undefined && this.gold >= storeItems[n].cost){
                         this.inventory.push(storeItems[n])
                         this.gold -= storeItems[n].cost
-                        console.log("gaspar")
+                        console.log("item bought")
                     }else{
                         console.log("U already have this item")
                     }
@@ -116,7 +116,7 @@
                     if(this.gold >= storeItems[n].cost){
                         this.gold -= storeItems[n].cost
                         this.inventory.push(storeItems[0])
-                        console.log("gaspar")
+                        console.log("item bought")
                     }
                 }
             
@@ -147,9 +147,8 @@
         ctx.drawImage(bg, bgX,bgY,5865,3894) 
         
 
-
+        
         /* map movement */
-
 
 
         ctx.drawImage(image, frameIndex * 39,0,39,56,characterX,characterY,70,70)    
@@ -170,83 +169,6 @@
             store()
             
         }
-        
-        if(wKey){
-            
-            if(bgY > -450){
-                characterY -=5
-            }else{
-                bgY +=5
-                if(characterY > H/2){
-                    characterY -=5
-                }
-
-            }
-            
-        }
-        
-        if(aKey){
-            if(bgX >-500){
-                characterX -=5
-            }else if(bgY <-2200){
-                
-                characterX -= 5
-            }else if(bgX>-3000 && bgY >-500){
-                characterX -= 5
-            }else{
-                bgX +=5
-                if(characterX > W/2){
-                    characterX -=5
-                }
-                
-
-            }
-            
-            
-            
-            
-        }
-        
-        
-        if(sKey){
-
-            
-            
-            
-            
-            if(bgY <-2500){
-                characterY += 5
-                
-            } else{
-                bgY -=5
-                if(characterY < H/2){
-                    characterY +=5
-                }
-            }
-            
-        
-        }
-        
-        
-        if(dKey){
-            if(bgY <-1100 && bgX < -4000){
-                characterX += 5
-            }else if(bgY <-2200){
-                characterX += 5
-            } else{
-                bgX -=5
-                if(characterX <W/2){
-                    characterX +=5
-                }
-
-            }
-            
-            
-            
-        }
-        
-    
-        
         
         
 
@@ -323,43 +245,12 @@
             ctx.font="18px gameFont"
             ctx.fillText("Buy",textX+50,textY+200)
             ctx.closePath()
-                /* 
-                ctx.beginPath()
-                ctx.font="18px gameFont"
-                ctx.fillText("Back",220,100)
-                ctx.closePath() */
+                
+                
             textX += 220
             
-            
-            
-            
-            
-            
-
         })
         inStore = false
-        
-    }
-
-
-
-
-
-
-    /* EVENT LISTENERS TECLADO */
-    /* window.addEventListener("keydown",keyPressed) 
-    window.addEventListener("keyup", keyReleased)  */
-
-
-
-
-    
-
-
-
-    function goBack(){
-        bgX = -1600
-        bgY = -1000
         
     }
      
@@ -488,113 +379,6 @@
                 break;
         } 
     }) 
-
-
-    function keyPressed(click){
-
-        /* ctx.drawImage(bgWhite,bgX,bgY,5865,3894) */
-        
-        if (click.key == "w" || click.key == "W") {
-            
-                ctx.clearRect(0,0,W,H)
-                ctx.drawImage(bgWhite, bgX, bgY, 5865, 3894)
-                pixel = ctx.getImageData(characterX,characterY-7,39,39)
-                
-                if(!verifyPixel(pixel.data,0,0,0)){ 
-                    
-                    wKey=true
-                }
-
-            
-            
-        } 
-        
-        else if (click.key == "d" || click.key == "D") {
-             
-            pixel  = ctx.getImageData(characterX+1,characterY, 39,1)
-            
-            image = imageWalkRightBoy 
-            dKey = true
-
-
-            
-            
-            
-            
-        
-        } 
-        
-        else if (click.key == "a" || click.key == "A") {
-        /*  image = imageWalkLeftBoy
-            bgX +=2 */
-
-
-
-            pixel  = ctx.getImageData(characterX-1,characterY, 39,1)
-            
-            image = imageWalkLeftBoy 
-            aKey = true
-        } 
-        
-        else if (click.key == "s" || click.key == "S"){
-            
-
-            pixel  = ctx.getImageData(characterX,characterY+1, 56,1)
-            
-            image = imageWalkDownBoy 
-            sKey = true
-
-            
-
-
-        }
-    }
-
-
-    function keyReleased(click){
-        if (click.key == "w" || click.key == "W") {
-            
-            wKey = false
-        } 
-        
-        else if (click.key == "d" || click.key == "D") {
- 
-            pixel  = ctx.getImageData(characterX+1,characterY, 64,1)
-            
-            image = imageIdleBoy 
-            dKey = false
-            
-            
-            
-        
-        } 
-        
-        else if (click.key == "a" || click.key == "A") {
-        /*  image = imageWalkLeftBoy
-            bgX +=2 */
-
-
-
-            pixel  = ctx.getImageData(characterX-1,characterY, 64,1)
-            if(verifyPixel(pixel)){
-            }
-            image = imageIdleBoy 
-            aKey = false
-        } 
-        
-        else if (click.key == "s" || click.key == "S"){
-            
-
-            pixel  = ctx.getImageData(characterX,characterY+1, 64,1)
-        
-            image = imageIdleBoy 
-            sKey = false
-
-
-
-
-        }
-    }
 
     function verifyPixel(pixel,r,g,b) {
         let pix = []
