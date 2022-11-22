@@ -19,7 +19,6 @@ function submit(){
     window.location.href='game.html'
     console.log(nome)
 }
-    <button id = "submit">Confirmar</button>;
 
 
 
