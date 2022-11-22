@@ -6,6 +6,7 @@
     canvas.height = 800;
     let W = canvas.width;
     let H = canvas.height;
+    let itemCount
 
     let storeItems = [
         {
@@ -34,7 +35,7 @@
     
     /*variaveis movimento*/
     let bgX = -1600
-    let bgY = -1000
+    let bgY = -1200
 
     let inStore
 
@@ -65,7 +66,7 @@
     bg.src = "/Tilesets/mapNew.png"
 
     let bgWhite = new Image();
-    bgWhite.src ="/Tilesets/mapCollisions.png"
+    bgWhite.src ="/Tilesets/mapCollisionsFinal.png"
 
 
     let shopBackground = new Image();
@@ -75,19 +76,19 @@
 
     /* Imagem Rapaz */
     let imageIdleBoy = new Image()
-    imageIdleBoy.src = '/Packs/Sprite_Rapaz/Sprite_Boy_Stop.png'
+    imageIdleBoy.src = '/Packs/Sprite_Rapaz/Sprite_Boy_StopNew.png'
 
     let imageUpBoy = new Image()
-    imageUpBoy.src = '/Packs/Sprite_Rapaz/Sprite_Boy_Up.png'
+    imageUpBoy.src = '/Packs/Sprite_Rapaz/Sprite_Boy_UpNew.png'
 
     let imageWalkRightBoy = new Image();
-    imageWalkRightBoy.src = '/Packs/Sprite_Rapaz/Sprite_Boy_Right.png'
+    imageWalkRightBoy.src = '/Packs/Sprite_Rapaz/Sprite_Boy_RightNew.png'
 
     let imageWalkLeftBoy = new Image();
-    imageWalkLeftBoy.src = '/Packs/Sprite_Rapaz/Sprite_Boy_Left.png'
+    imageWalkLeftBoy.src = '/Packs/Sprite_Rapaz/Sprite_Boy_LeftNew.png'
 
     let imageWalkDownBoy = new Image();
-    imageWalkDownBoy.src = '/Packs/Sprite_Rapaz/Sprite_Boy_Down.png'
+    imageWalkDownBoy.src = '/Packs/Sprite_Rapaz/Sprite_Boy_DownNew.png'
 
     let image= imageIdleBoy
     class Player{
@@ -95,37 +96,37 @@
             this.type = type;
             this.name = name;
             this.inventory = [];
-            this.gold = 500;
+            this.gold = 50000;
             this.timePlayed = 0;
         }
 
 
-        buyItem1(){
-            if(this.gold >= storeItems[0].cost){
-
-                if(this.inventory.length ==0){
-                    
-                    this.inventory.push(storeItems[0])
-                    console.log("item 1 bought")
-                }else{
-                    
-                    (this.inventory).forEach(invItem =>{
-                        
-                        if(invItem.id == 0){
-                            
-                            console.log("Item Already in Inventory")
-                        }else{
-                            this.inventory.push(storeItems[0])
-                            
-                        }
-                    })
+        buyItem(n){
+            
+                console.log("o teu pai")
+                if(this.inventory.length >0){
+                    if(this.inventory.find(item => item.id == storeItems[n].id) == undefined && this.gold >= storeItems[n].cost){
+                        this.inventory.push(storeItems[n])
+                        this.gold -= storeItems[n].cost
+                        console.log("gaspar")
+                    }else{
+                        console.log("U already have this item")
+                    }
+                } else{
+                    if(this.gold >= storeItems[n].cost){
+                        this.gold -= storeItems[n].cost
+                        this.inventory.push(storeItems[0])
+                        console.log("gaspar")
+                    }
                 }
-            }else{
-                console.log("not enough gold")
-            }
-            console.log(this.inventory)      
+            
         }
-    }
+
+
+        
+        
+        
+    }   
 
     player = new Player("1","Joao")
 
@@ -141,9 +142,9 @@
 
     function render(){
         ctx.clearRect(0,0,W,H)
-        ctx.drawImage(bg, bgX,bgY,5865,3894)
-        /* console.log("x:",bgX)
-        console.log("y:",bgY) */
+        
+        ctx.drawImage(bgWhite, bgX,bgY,5865,3894)
+        ctx.drawImage(bg, bgX,bgY,5865,3894) 
         
 
 
@@ -151,7 +152,7 @@
 
 
 
-        ctx.drawImage(image, frameIndex * 64,0,64,64,characterX,characterY,100,100)    
+        ctx.drawImage(image, frameIndex * 39,0,39,56,characterX,characterY,70,70)    
         animationFrameCount++
         
 
@@ -256,17 +257,17 @@
         /* let event = window.event */
         let xCursorPosition = event.clientX
         let yCursorPosition = event.clientY
-        console.log(xCursorPosition)
-        console.log(yCursorPosition)
-        if(xCursorPosition >= 640 && xCursorPosition <= 705 && yCursorPosition >= 385 && yCursorPosition <=400){
-            player.buyItem1()
+        
+        if(xCursorPosition >= 655    && xCursorPosition <= 710 && yCursorPosition >= 550 && yCursorPosition <=565){
+            
+            player.buyItem(0)
         }
-        if(xCursorPosition >=870 && xCursorPosition <=925 && yCursorPosition >=385 && yCursorPosition <=405){
-            buyItem2()
+        if(xCursorPosition >=880 && xCursorPosition <=930 && yCursorPosition >=550 && yCursorPosition <=565){
+            player.buyItem(1)
         }
         
-        if(xCursorPosition >=1090 && xCursorPosition <=1145 && yCursorPosition >=385 && yCursorPosition <=405){
-            buyItem3()
+        if(xCursorPosition >=1100 && xCursorPosition <=1150 && yCursorPosition >=550 && yCursorPosition <=565){
+            player.buyItem(2)
         }
 
 
@@ -299,6 +300,12 @@
         ctx.fillText("Shop",W/2-100,150)
         ctx.closePath()
         
+        ctx.beginPath()
+        ctx.font = "20px gameFont"
+        ctx.fillStyle = "white"
+        ctx.fillText(`Gold: ${player.gold}`, 950,100)
+        ctx.closePath() 
+
         storeItems.forEach(item =>{
 
             ctx.beginPath()
@@ -316,11 +323,11 @@
             ctx.font="18px gameFont"
             ctx.fillText("Buy",textX+50,textY+200)
             ctx.closePath()
-            
-            ctx.beginPath()
-            ctx.font="18px gameFont"
-            ctx.fillText("Back",220,125)
-            ctx.closePath()
+                /* 
+                ctx.beginPath()
+                ctx.font="18px gameFont"
+                ctx.fillText("Back",220,100)
+                ctx.closePath() */
             textX += 220
             
             
@@ -340,47 +347,172 @@
 
 
     /* EVENT LISTENERS TECLADO */
-    window.addEventListener("keydown",keyPressed)
-    window.addEventListener("keyup", keyReleased)
+    /* window.addEventListener("keydown",keyPressed) 
+    window.addEventListener("keyup", keyReleased)  */
 
 
 
 
     
 
-    function buyItem2(){
-        
-        console.log("item 2 bought")
-        
-    }
 
-    function buyItem3(){
-        console.log("item 3 bought")
-    }
 
     function goBack(){
         bgX = -1600
         bgY = -1000
-        /* render() */
+        
     }
+     
+
+   window.addEventListener("keydown",(event) => {
+        
+        
+        switch (event.keyCode) {
+            case 87:
+                ctx.clearRect(0,0,W,H)
+                ctx.drawImage(bgWhite, bgX, bgY, 5865, 3894)
+                pixel = ctx.getImageData(characterX,characterY-7,39,39)
+                
+                if(!verifyPixel(pixel.data,0,0,0)){
+                    image=imageUpBoy
+                    if(bgY > -450){
+                        characterY -=5
+                    }else{
+                        bgY +=5
+                        if(characterY > H/2){
+                            characterY -=5
+                        }
+        
+                    }
+                }
+                break;
+            case 68:
+                ctx.clearRect(0,0,W,H)
+                ctx.drawImage(bgWhite, bgX, bgY, 5865, 3894)
+                pixel = ctx.getImageData(characterX+7,characterY,39,39)
+                
+                if(!verifyPixel(pixel.data,0,0,0)){
+                    image=imageWalkRightBoy 
+                    if(bgY <-1100 && bgX < -4000){
+                        characterX += 5
+                    }else if(bgY <-2200){
+                        characterX += 5
+                    } else{
+                        bgX -=5
+                        if(characterX <W/2){
+                            characterX +=5
+                        }
+        
+                    }
+                }
+                
+            
+                break;
+            case 65:
+                ctx.clearRect(0,0,W,H)
+                ctx.drawImage(bgWhite, bgX, bgY, 5865, 3894)
+                pixel = ctx.getImageData(characterX-7,characterY,39,39)
+                
+                if(!verifyPixel(pixel.data,0,0,0)){
+                    image=imageWalkLeftBoy 
+                    if(bgX >-500){
+                        characterX -=5
+                    }else if(bgY <-2200){
+                        
+                        characterX -= 5
+                    }else if(bgX>-3000 && bgY >-500){
+                        characterX -= 5
+                    }else{
+                        bgX +=5
+                        if(characterX > W/2){
+                            characterX -=5
+                        }
+                        
+        
+                    }
+                    
+                }
+
+                
+                break;  
+            case 83:
+                ctx.clearRect(0,0,W,H)
+                ctx.drawImage(bgWhite, bgX, bgY, 5865, 3894)
+                pixel = ctx.getImageData(characterX,characterY+7,39,39)
+                
+                if(!verifyPixel(pixel.data,0,0,0)){
+                    image=imageWalkDownBoy 
+                    if(bgY <-2500){
+                        characterY += 5
+                        
+                    } else{
+                        bgY -=5
+                        if(characterY < H/2){
+                            characterY +=5
+                        }
+                    }
+                    
+                }
+            
+                break;      
+            default:
+                break;
+        } 
+    }) 
+
+
+    window.addEventListener("keyup",(event)=> {
+        switch (event.keyCode) {
+            case 87:
+                
+                image=imageIdleBoy
+                    
+                
+                break;
+            case 68:
+                image = imageIdleBoy
+                break;
+            case 65:
+                image = imageIdleBoy
+
+                        
+        
+                    
+
+                
+                break;  
+            case 83:
+                image = imageIdleBoy
+                break;      
+            default:
+                break;
+        } 
+    }) 
+
 
     function keyPressed(click){
 
         /* ctx.drawImage(bgWhite,bgX,bgY,5865,3894) */
         
         if (click.key == "w" || click.key == "W") {
-            /* pixel  = ctx.getImageData(characterX,characterY-1, 64,1)
-            if(verifyPixel(pixel)){
-            } */
-            image = imageUpBoy
-            wKey = true
+            
+                ctx.clearRect(0,0,W,H)
+                ctx.drawImage(bgWhite, bgX, bgY, 5865, 3894)
+                pixel = ctx.getImageData(characterX,characterY-7,39,39)
+                
+                if(!verifyPixel(pixel.data,0,0,0)){ 
+                    
+                    wKey=true
+                }
+
+            
+            
         } 
         
         else if (click.key == "d" || click.key == "D") {
-            /* 
-            pixel  = ctx.getImageData(characterX+1,characterY, 64,1)
-            if(verifyPixel(pixel)){
-            } */
+             
+            pixel  = ctx.getImageData(characterX+1,characterY, 39,1)
+            
             image = imageWalkRightBoy 
             dKey = true
 
@@ -398,9 +530,8 @@
 
 
 
-            /* pixel  = ctx.getImageData(characterX-1,characterY, 64,1)
-            if(verifyPixel(pixel)){
-            } */
+            pixel  = ctx.getImageData(characterX-1,characterY, 39,1)
+            
             image = imageWalkLeftBoy 
             aKey = true
         } 
@@ -408,9 +539,8 @@
         else if (click.key == "s" || click.key == "S"){
             
 
-            /* pixel  = ctx.getImageData(characterX,characterY+1, 64,1)
-            if(verifyPixel(pixel)){
-            } */
+            pixel  = ctx.getImageData(characterX,characterY+1, 56,1)
+            
             image = imageWalkDownBoy 
             sKey = true
 
@@ -423,18 +553,14 @@
 
     function keyReleased(click){
         if (click.key == "w" || click.key == "W") {
-            /* pixel  = ctx.getImageData(characterX,characterY-1, 64,1)
-            if(verifyPixel(pixel)){
-            } */
-            image = imageIdleBoy
+            
             wKey = false
         } 
         
         else if (click.key == "d" || click.key == "D") {
-            /* 
+ 
             pixel  = ctx.getImageData(characterX+1,characterY, 64,1)
-            if(verifyPixel(pixel)){
-            } */
+            
             image = imageIdleBoy 
             dKey = false
             
@@ -449,9 +575,9 @@
 
 
 
-            /* pixel  = ctx.getImageData(characterX-1,characterY, 64,1)
+            pixel  = ctx.getImageData(characterX-1,characterY, 64,1)
             if(verifyPixel(pixel)){
-            } */
+            }
             image = imageIdleBoy 
             aKey = false
         } 
@@ -459,9 +585,8 @@
         else if (click.key == "s" || click.key == "S"){
             
 
-            /* pixel  = ctx.getImageData(characterX,characterY+1, 64,1)
-            if(verifyPixel(pixel)){
-            } */
+            pixel  = ctx.getImageData(characterX,characterY+1, 64,1)
+        
             image = imageIdleBoy 
             sKey = false
 
@@ -471,11 +596,23 @@
         }
     }
 
-    function verifyPixel(pixel) {
+    function verifyPixel(pixel,r,g,b) {
         let pix = []
-        for (let i = 0 ; i< pixel.data.length/4; i++){
-            pix.push([pixel.data[i*4],pixel.data[i*4+1],pixel.data[i*4+2],pixel.data[i*4+3]])
+        
+        for(let i = 0; i < pixel.length/4; i++) {
+            
+            pix.push([pixel[i*4],pixel[i*4+1],pixel[i*4+2],pixel[i*4+3]])
         }
-        return !pix.find(x=>x[0] == 0 && x[1] == 0 && x[2] == 0)
 
+        let pixFilter = pix.filter(data => data[0] == r && data[1] == g && data[2] == b )
+
+        
+        if( r == 0 && g==0 && b == 0){
+            
+            if(pixFilter.length >= 39/2){
+                return true
+            }else{
+                return false
+            }
+        }
     }
